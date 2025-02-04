@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tabler/icons-react": "^3.29.0",
     "axios": "^1.7.9",
+    "clsx": "^2.1.1",
+    "motion": "^12.0.11",
     "next": "15.1.6",
     "primeicons": "^7.0.0",
     "primereact": "^10.9.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.5",
+    "tailwind-merge": "^3.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
