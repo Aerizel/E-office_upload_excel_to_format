@@ -1,3 +1,4 @@
+import { FONT_SIZE } from "@/config/fontSize";
 import { UPLOAD_STATUS } from "@/config/uploadStatus";
 import { Button } from "primereact/button";
 import { Tag } from "primereact/tag";
@@ -26,10 +27,10 @@ export const CardFiles: React.FC<cardFilesProps> = ({ index, name, size, status,
     };
 
 
-    const pedding = <Tag value={paddingBtnText} severity="warning" className="px-2 py-3" />
-    const failed = <Tag value={failBtnText} severity="danger" className="px-2 py-3 text-[14px]" />
+    const pedding = <Tag value={paddingBtnText} severity="warning" className={`px-2 py-3 font-[family-name:var(--supermarket)] ${FONT_SIZE.small}`} />
+    const failed = <Tag value={failBtnText} severity="danger" className={`px-2 py-3 font-[family-name:var(--supermarket)] text-[16px] ${FONT_SIZE.small}`} />
     const cancelBtn = <Button icon="pi pi-times" rounded text severity="danger" aria-label="Cancel" onClick={() => removeItem(index)} />
-    const downloadBtn = <Button className={`p-2 gap-2 flex justify-center border-none bg-green-500 focus:shadow-lg`} raised onClick={() => handleDownload(data!, name)} onTouchStart={() => handleDownload}>
+    const downloadBtn = <Button className={`p-2 gap-2 flex justify-center border-none bg-green-500 focus:shadow-lg font-[family-name:var(--supermarket)] ${FONT_SIZE.small}`} raised onClick={() => handleDownload(data!, name)} onTouchStart={() => handleDownload}>
         <p className={`text-base text-white`}>{downloadBtnText}</p>
     </Button>
 
@@ -39,10 +40,10 @@ export const CardFiles: React.FC<cardFilesProps> = ({ index, name, size, status,
                 <div className="pt-2 pb-2 pr-[5px] flex flex-row justify-start items-center">
                     <div className="p-3 flex flex-col">
                         <div className="flex flex-row">
-                            <p className="text-[14px]">{index + 1}.</p>
-                            <p className='text-[14px] text-graytone1 text-pretty break-words'>{`ชื่อไฟล์ : ${name}`}</p>
+                            <p className={FONT_SIZE.small}>{index + 1}.</p>
+                            <p className={`text-[14px] text-graytone1 text-pretty break-words ${FONT_SIZE.small}`}>{`ชื่อไฟล์ : ${name}`}</p>
                         </div>
-                        <p className='flex justify-start text-[14px] text-greentone1'>{`ขนาดไฟล์ : ${(size / 1024).toFixed(2)} KB`}</p>
+                        <p className={`flex justify-start text-[14px] text-greentone1 ${FONT_SIZE.small}`}>{`ขนาดไฟล์ : ${(size / 1024).toFixed(2)} KB`}</p>
                     </div>
                 </div>
                 <div className="flex flex-row items-center">
