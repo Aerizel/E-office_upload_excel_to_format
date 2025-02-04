@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useState } from "react";
 import { Button } from "primereact/button";
 import { Toast } from 'primereact/toast';
-import { CardFiles } from "./card/cardFiles";
+import { CardFiles } from "@/components/card/cardFiles";
 import { FILE_STATUS, UPLOAD_STATUS } from "@/config/uploadStatus";
 import axios from "axios";
 import { filesModel, jsonFiles } from "@/app/model/filesModel";
