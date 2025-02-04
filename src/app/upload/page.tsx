@@ -28,9 +28,6 @@ export default function UploadFileForm() {
 
             //PREVENT DUPLICATE FILES
             const existingFileNames = new Set(files.map(file => file.name));
-            // existingFileNames.forEach(element => {
-            //     console.log(`${element} \n`)
-            // });
             const uniqueNewFiles = selectedFiles.filter(file => !existingFileNames.has(file.name));
 
             if (uniqueNewFiles.length > 0) {
@@ -42,6 +39,8 @@ export default function UploadFileForm() {
                 }));
                 setFiles(prevFiles => [...prevFiles, ...allFiles]);
             }
+
+            e.target.value = "";
         }
     };
 
