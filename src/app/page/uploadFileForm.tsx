@@ -8,6 +8,7 @@ import { FILE_STATUS, UPLOAD_STATUS } from "@/config/uploadStatus";
 import axios from "axios";
 import { filesModel, jsonFiles } from "@/app/model/filesModel";
 import { base64ToBlob } from "@/utils/convertType";
+import { FONT_SIZE } from "@/config/fontSize";
 
 export default function UploadFileForm() {
     const uploadBtnText = "แปลงไฟล์";
@@ -121,29 +122,29 @@ export default function UploadFileForm() {
     };
 
     const selectBt = <Button className={`p-2 gap-2 flex justify-center border-none bg-blue-600 focus:shadow-lg`} raised onClick={() => fileInputRef.current?.click()} onTouchStart={() => fileInputRef.current?.click()}>
-        <i className="pi pi-file-import text-white" style={{ fontSize: '16px' }}></i>
+        <i className="pi pi-file-import text-white" style={{ fontSize: FONT_SIZE.normal }}></i>
         <p className={`text-base text-white`}>{selectBtnText}</p>
     </Button>
     const uploadBt = <Button className={`p-2 gap-2 flex justify-center border-none bg-blue-400 focus:shadow-lg`} raised onClick={() => handleUpload()} onTouchStart={() => handleUpload()}>
-        <i className="pi pi-file-edit text-white" style={{ fontSize: '16px' }}></i>
+        <i className="pi pi-file-edit text-white" style={{ fontSize: FONT_SIZE.normal }}></i>
         <p className={`text-base text-white`}>{uploadBtnText}</p>
     </Button>
     const reSelectBt = <Button className={`p-2 gap-2 flex justify-center border-none bg-blue-400 focus:shadow-lg`} raised onClick={() => removeAllFileItem()} onTouchStart={() => removeAllFileItem()}>
-        <i className="pi pi-file-edit text-white" style={{ fontSize: '16px' }}></i>
+        <i className="pi pi-file-edit text-white" style={{ fontSize: FONT_SIZE.normal }}></i>
         <p className={`text-base text-white`}>{reSelectBtnText}</p>
     </Button>
     const downloadBt = <Button className={`p-2 gap-2 flex justify-center border-none bg-blue-800 focus:shadow-lg`} raised onClick={() => downloadAllFile()} onTouchStart={() => downloadAllFile}>
-        <i className="pi pi-upload text-white" style={{ fontSize: '16px' }}></i>
+        <i className="pi pi-upload text-white" style={{ fontSize: FONT_SIZE.normal }}></i>
         <p className={`text-base text-white`}>{downloadBtnText}</p>
     </Button>
     const removeAllBt = <Button className={`w-3/6 p-2 gap-2 flex justify-center border-none bg-red-500 focus:shadow-lg`} raised onClick={() => removeAllFileItem()} onTouchStart={() => removeAllFileItem()}>
-        <i className="pi pi-times text-white" style={{ fontSize: '16px' }}></i>
+        <i className="pi pi-times text-white" style={{ fontSize: FONT_SIZE.normal }}></i>
         <p className={`text-base text-white`}>{removeAllBtnText}</p>
     </Button>
     const displayToast = <Toast ref={toast} position="bottom-center" />
 
     return (
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--supermarket)]">
             <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
                 <div className="border-2 border-gray-400 rounded-md">
                     <div className="w-full p-5 border-2 rounded-md">

@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @font-face {
+  font-family: "supermarket";
+  src: local("supermarket"),
+    url("/src/assets/font/supermarket.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  font-family: "supermarket", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
