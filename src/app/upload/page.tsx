@@ -24,27 +24,27 @@ export default function UploadFileForm() {
   const [uploadStatus, setUploadStatus] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // const handleFileUpload = (newFiles: File[]) => {
-  //   if (newFiles.length > 0) {
-  //     const existingFileNames = new Set(files.map((file) => file.name));
-  //     const allFiles: filesModel[] = [];
+  const handleFileUpload = (newFiles: File[]) => {
+    if (newFiles.length > 0) {
+      const existingFileNames = new Set(files.map((file) => file.name));
+      const allFiles: filesModel[] = [];
 
-  //     for (const data of newFiles) {
-  //       if (!existingFileNames.has(data.name)) {
-  //         allFiles.push({
-  //           name: data.name,
-  //           size: data.size,
-  //           status: UPLOAD_STATUS.pedding,
-  //           data: data,
-  //         });
-  //       }
-  //     }
+      for (const data of newFiles) {
+        if (!existingFileNames.has(data.name)) {
+          allFiles.push({
+            name: data.name,
+            size: data.size,
+            status: UPLOAD_STATUS.pedding,
+            data: data,
+          });
+        }
+      }
 
-  //     if (allFiles.length > 0) {
-  //       setFiles((prevFiles) => [...prevFiles, ...allFiles]);
-  //     }
-  //   }
-  // };
+      if (allFiles.length > 0) {
+        setFiles((prevFiles) => [...prevFiles, ...allFiles]);
+      }
+    }
+  };
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -173,58 +173,59 @@ export default function UploadFileForm() {
 
   const selectBt = (
     <Button
-      className={`p-2 gap-2 flex justify-center border-none bg-blue-600 focus:shadow-lg`}
+      className={`px-8 py-2 gap-3 flex justify-center items-center border-none bg-blue-600 focus:shadow-lg`}
       raised
       onClick={() => fileInputRef.current?.click()}
       onTouchStart={() => fileInputRef.current?.click()}
     >
       <i
         className="pi pi-file-import text-white"
-        style={{ fontSize: FONT_SIZE.normal }}
+        style={{ fontSize: "20px" }}
       ></i>
-      <p className={`text-base text-white`}>{selectBtnText}</p>
+      <p className={`text-[${FONT_SIZE.big}] text-white pt-1`}>
+        {selectBtnText}
+      </p>
     </Button>
   );
   const uploadBt = (
     <Button
-      className={`p-2 gap-2 flex justify-center border-none bg-blue-400 focus:shadow-lg`}
+      className={`px-8 py-2 gap-3 flex justify-center border-none bg-blue-400 focus:shadow-lg`}
       raised
       onClick={() => handleUpload()}
       onTouchStart={() => handleUpload()}
     >
       <i
         className="pi pi-file-edit text-white"
-        style={{ fontSize: FONT_SIZE.normal }}
+        style={{ fontSize: "20px" }}
       ></i>
-      <p className={`text-base text-white`}>{uploadBtnText}</p>
+      <p className={`text-[${FONT_SIZE.big}] text-white pt-1`}>
+        {uploadBtnText}
+      </p>
     </Button>
   );
   const reSelectBt = (
     <Button
-      className={`p-2 gap-2 flex justify-center border-none bg-blue-400 focus:shadow-lg`}
+      className={`px-8 py-2 gap-3 flex justify-center border-none bg-blue-400 focus:shadow-lg`}
       raised
       onClick={() => removeAllFileItem()}
       onTouchStart={() => removeAllFileItem()}
     >
       <i
         className="pi pi-file-edit text-white"
-        style={{ fontSize: FONT_SIZE.normal }}
+        style={{ fontSize: "20px" }}
       ></i>
-      <p className={`text-base text-white`}>{reSelectBtnText}</p>
+      <p className={`text-base text-white pt-1`}>{reSelectBtnText}</p>
     </Button>
   );
   const downloadBt = (
     <Button
-      className={`p-2 gap-2 flex justify-center border-none bg-blue-800 focus:shadow-lg`}
+      className={`px-8 py-2 gap-3 flex justify-center border-none bg-blue-800 focus:shadow-lg`}
       raised
       onClick={() => downloadAllFile()}
       onTouchStart={() => downloadAllFile}
     >
-      <i
-        className="pi pi-upload text-white"
-        style={{ fontSize: FONT_SIZE.normal }}
-      ></i>
-      <p className={`text-base text-white`}>{downloadBtnText}</p>
+      <i className="pi pi-upload text-white" style={{ fontSize: "20px" }}></i>
+      <p className={`text-base text-white pt-1`}>{downloadBtnText}</p>
     </Button>
   );
   const removeAllBt = (
@@ -234,65 +235,58 @@ export default function UploadFileForm() {
       onClick={() => removeAllFileItem()}
       onTouchStart={() => removeAllFileItem()}
     >
-      <i
-        className="pi pi-times text-white"
-        style={{ fontSize: FONT_SIZE.normal }}
-      ></i>
-      <p className={`text-base text-white`}>{removeAllBtnText}</p>
+      <i className="pi pi-times text-white" style={{ fontSize: "20px" }}></i>
+      <p className={`text-base text-white pt-1`}>{removeAllBtnText}</p>
     </Button>
   );
   const displayToast = <Toast ref={toast} position="bottom-center" />;
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--supermarket)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <div className="border-2 border-gray-400 rounded-md">
-          <div className="w-full p-5 border-2 rounded-md">
-            {displayToast}
-            <div className="w-full pb-3 border-b-[3px] border-gray-300 gap-2 flex flex-row">
-              {uploadStatus ? reSelectBt : selectBt}
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={onFileChange}
-                multiple
-                accept=".xlsx, .xls"
-                style={{ display: "none" }}
-              />
-              {uploadStatus ? downloadBt : uploadBt}
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center  p-8 pb-20 gap-16  font-[family-name:var(--supermarket)]">
+      <div className="flex flex-col gap-8 row-start-2 items-center w-[50%] h-auto sm:items-start shadow-[1px_3px_7px_1.5px_rgba(0,0,0,0.2)] rounded-md">
+        <div className="w-full p-5 ">
+          {displayToast}
+          <div className="w-full pb-3 border-b-[3px] gap-2 flex flex-row">
+            {uploadStatus ? reSelectBt : selectBt}
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={onFileChange}
+              multiple
+              accept=".xlsx, .xls"
+              style={{ display: "none" }}
+            />
+            {uploadStatus ? downloadBt : uploadBt}
+          </div>
+          <div className="flex flex-col">
+            <div className="pt-5 flex justify-center items-center">
+              {files.length > 0 ? removeAllBt : null}
             </div>
-            <div className="flex flex-col">
-              <div className="pt-5 flex justify-center items-center">
-                {files.length > 0 ? removeAllBt : null}
-              </div>
-              {files.map((data, index) => {
-                return (
-                  <div key={index} className="pt-5">
-                    {
-                      <CardFiles
-                        key={index}
-                        index={index}
-                        name={data.name}
-                        size={data.size}
-                        status={data.status}
-                        data={
-                          data.status === UPLOAD_STATUS.success
-                            ? data.data
-                            : null
-                        }
-                        removeItem={removeFileItem}
-                      />
-                    }
-                  </div>
-                );
-              })}
-            </div>
+            {files.map((data, index) => {
+              return (
+                <div key={index} className="pt-5">
+                  {
+                    <CardFiles
+                      key={index}
+                      index={index}
+                      name={data.name}
+                      size={data.size}
+                      status={data.status}
+                      data={
+                        data.status === UPLOAD_STATUS.success ? data.data : null
+                      }
+                      removeItem={removeFileItem}
+                    />
+                  }
+                </div>
+              );
+            })}
           </div>
         </div>
         {/* <div className="w-full max-w-4xl mx-auto min-h-96 border border-dashed bg-white dark:bg-black border-neutral-200 dark:border-neutral-800 rounded-lg">
           <FileUpload onChange={handleFileUpload} />
         </div> */}
-      </main>
+      </div>
       {/* <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
       </footer> */}
     </div>

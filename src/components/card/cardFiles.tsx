@@ -27,15 +27,15 @@ export const CardFiles: React.FC<cardFilesProps> = ({ index, name, size, status,
     };
 
 
-    const pedding = <Tag value={paddingBtnText} severity="warning" className={`px-2 py-3 font-[family-name:var(--supermarket)] ${FONT_SIZE.small}`} />
-    const failed = <Tag value={failBtnText} severity="danger" className={`px-2 py-3 font-[family-name:var(--supermarket)] text-[16px] ${FONT_SIZE.small}`} />
+    const pending = <Tag value={paddingBtnText} severity="warning" className={`px-8 py-3 font-[family-name:var(--supermarket)] ${FONT_SIZE.big}`} />
+    const failed = <Tag value={failBtnText} severity="danger" className={`px-8 py-3 font-[family-name:var(--supermarket)] text-[16px] ${FONT_SIZE.small}`} />
     const cancelBtn = <Button icon="pi pi-times" rounded text severity="danger" aria-label="Cancel" onClick={() => removeItem(index)} />
-    const downloadBtn = <Button className={`p-2 gap-2 flex justify-center border-none bg-green-500 focus:shadow-lg font-[family-name:var(--supermarket)] ${FONT_SIZE.small}`} raised onClick={() => handleDownload(data!, name)} onTouchStart={() => handleDownload}>
-        <p className={`text-base text-white`}>{downloadBtnText}</p>
+    const downloadBtn = <Button className={`px-8 py-3 gap-2 flex justify-center border-none bg-green-500 focus:shadow-lg font-[family-name:var(--supermarket)] ${FONT_SIZE.small}`} raised onClick={() => handleDownload(data!, name)} onTouchStart={() => handleDownload}>
+        <p className={`text-md text-white`}>{downloadBtnText}</p>
     </Button>
 
     return (
-        <div className='w-full rounded-xl flex flex-col shadow-[0px_3px_7px_1.5px_rgba(0,0,0,0.2)] bg-white'>
+        <div className='w-full flex flex-col'>
             <div className="flex flex-row justify-between items-center">
                 <div className="pt-2 pb-2 pr-[5px] flex flex-row justify-start items-center">
                     <div className="p-3 flex flex-col">
@@ -47,7 +47,7 @@ export const CardFiles: React.FC<cardFilesProps> = ({ index, name, size, status,
                     </div>
                 </div>
                 <div className="flex flex-row items-center">
-                    {status === UPLOAD_STATUS.pedding ? pedding :
+                    {status === UPLOAD_STATUS.pending ? pending :
                         status === UPLOAD_STATUS.success && data ? downloadBtn : failed
                     }
                     {cancelBtn}
