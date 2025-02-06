@@ -1,80 +1,35 @@
 "use client";
 import Image from "next/image";
-import { useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { DirectionAwareHover } from "../components/DirectionAwareHover";
+// import { useRef, useState } from "react";
+// import { AnimatePresence, motion } from "framer-motion";
+// import { cn } from "@/lib/utils";
+// import { DirectionAwareHover } from "../components/DirectionAwareHover";
 import { TextGenerateEffect } from "@/components/TextGenerateEffect";
-import { Carousel } from "@/components/Carousel";
+// import { Carousel } from "@/components/Carousel";
 import { ColourfulText } from "@/components/ColorfulText";
-import { BentoGrid, BentoGridItem } from "../components/BentoGrid";
-import {
-  IconArrowWaveRightUp,
-  IconBoxAlignRightFilled,
-  IconBoxAlignTopLeft,
-  IconClipboardCopy,
-  IconFileBroken,
-  IconSignature,
-  IconTableColumn,
-} from "@tabler/icons-react";
+// import { BentoGrid, BentoGridItem } from "../components/BentoGrid";
+// import {
+//   IconArrowWaveRightUp,
+//   IconBoxAlignRightFilled,
+//   IconBoxAlignTopLeft,
+//   IconClipboardCopy,
+//   IconFileBroken,
+//   IconSignature,
+//   IconTableColumn,
+// } from "@tabler/icons-react";
 import UploadFileForm from "./upload/page";
+// import { AuroraBackground } from "@/components/AuroraBackground";
 
 const word =
   "E-Office : ระบบบริหารจัดการสำนักงาน สนับสนุนกระบวนการทำงานภายในของภาครัฐ เพื่อขับเคลื่อนรัฐบาลดิจิทัล";
-const words = ["How to use it?", "วิธีใช้งาน", "beautiful", "modern"];
 
 export default function Page() {
-  const Skeleton = () => (
-    <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>
-  );
-
-  const items = [
-    {
-      title: "The Dawn of Innovation",
-      description: "Explore the birth of groundbreaking ideas and inventions.",
-      header: <Skeleton />,
-      icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-      title: "The Digital Revolution",
-      description: "Dive into the transformative power of technology.",
-      header: <Skeleton />,
-      icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-      title: "The Art of Design",
-      description: "Discover the beauty of thoughtful and functional design.",
-      header: <Skeleton />,
-      icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-      title: "The Power of Communication",
-      description:
-        "Understand the impact of effective communication in our lives.",
-      header: <Skeleton />,
-      icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-      title: "The Pursuit of Knowledge",
-      description: "Join the quest for understanding and enlightenment.",
-      header: <Skeleton />,
-      icon: <IconArrowWaveRightUp className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-      title: "The Joy of Creation",
-      description: "Experience the thrill of bringing ideas to life.",
-      header: <Skeleton />,
-      icon: <IconBoxAlignTopLeft className="h-4 w-4 text-neutral-500" />,
-    },
-    {
-      title: "The Spirit of Adventure",
-      description: "Embark on exciting journeys and thrilling discoveries.",
-      header: <Skeleton />,
-      icon: <IconBoxAlignRightFilled className="h-4 w-4 text-neutral-500" />,
-    },
-  ];
+  // const Skeleton = () => (
+  //   <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>
+  // );
 
   return (
+    // <AuroraBackground>
     <div className="w-screen h-screen flex flex-col gap-4 ">
       <div className="flex flex-row justify-center items-center p-5">
         <TextGenerateEffect words={word} />
@@ -145,9 +100,10 @@ export default function Page() {
 
             {/* Step 2 */}
             <StepCard
-              imageSrc="/convertImage.jpg"
+              imageSrc="/convertFiles.jpg"
               stepNumber="Step 2"
               description="Users can click convert file to generate a new Excel file format."
+              note=""
             />
 
             {/* Step 3 */}
@@ -155,6 +111,7 @@ export default function Page() {
               imageSrc="/downloadFile.jpg"
               stepNumber="Step 3"
               description="Users can click download file to download the successfully converted file."
+              note=""
             />
 
             {/* Step 4 */}
@@ -162,22 +119,33 @@ export default function Page() {
               imageSrc="/downloadAllFiles.jpg"
               stepNumber="Step 4"
               description="ผู้ใช้สามารถกดปุ่ม 'ดาวน์โหลดไฟล์ทั้งหมด' เพื่อดาวน์โหลดไฟล์ที่ผ่านการเเปลงสำเร็จ"
+              note=""
             />
           </div>
 
           {/* Step 5 - Centered */}
           <div className="flex justify-center mt-10">
             <StepCard
-              imageSrc="/deleteFiles.jpg"
+              imageSrc="/deleteAllFiles.jpg"
               stepNumber="Step 5"
               description="Users can delete all uploaded files by clicking the delete button."
               customWidth="w-[60%]"
+              note=""
             />
           </div>
         </div>
       </div>
     </div>
+    // </AuroraBackground>
   );
+}
+
+interface StepCardProps {
+  imageSrc: string;
+  stepNumber: string;
+  description: string;
+  note?: string;
+  customWidth?: string;
 }
 
 function StepCard({
@@ -186,7 +154,7 @@ function StepCard({
   description,
   note,
   customWidth = "w-full",
-}) {
+}: StepCardProps) {
   return (
     <div
       className={`flex flex-col items-center text-center ${customWidth} bg-white p-6 rounded-2xl shadow-lg`}

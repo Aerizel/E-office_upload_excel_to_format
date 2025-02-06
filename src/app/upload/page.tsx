@@ -9,7 +9,8 @@ import axios from "axios";
 import { filesModel, jsonFiles } from "@/app/model/filesModel";
 import { base64ToBlob } from "@/utils/convertType";
 import { FONT_SIZE } from "@/config/fontSize";
-import { FileUpload } from "@/components/FileUpload";
+// import { FileUpload } from "@/components/FileUpload";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 export default function UploadFileForm() {
   const uploadBtnText = "แปลงไฟล์";
@@ -23,28 +24,30 @@ export default function UploadFileForm() {
   const [files, setFiles] = useState<filesModel[]>([]);
   const [uploadStatus, setUploadStatus] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleFileUpload = (newFiles: File[]) => {
-    if (newFiles.length > 0) {
-      const existingFileNames = new Set(files.map((file) => file.name));
-      const allFiles: filesModel[] = [];
+  // Drag and Drop component
+  // const handleFileUpload = (newFiles: File[]) => {
+  //   if (newFiles.length > 0) {
+  //     const existingFileNames = new Set(files.map((file) => file.name));
+  //     const allFiles: filesModel[] = [];
 
-      for (const data of newFiles) {
-        if (!existingFileNames.has(data.name)) {
-          allFiles.push({
-            name: data.name,
-            size: data.size,
-            status: UPLOAD_STATUS.pedding,
-            data: data,
-          });
-        }
-      }
+  //     for (const data of newFiles) {
+  //       if (!existingFileNames.has(data.name)) {
+  //         allFiles.push({
+  //           name: data.name,
+  //           size: data.size,
+  //           status: UPLOAD_STATUS.pedding,
+  //           data: data,
+  //         });
+  //       }
+  //     }
 
-      if (allFiles.length > 0) {
-        setFiles((prevFiles) => [...prevFiles, ...allFiles]);
-      }
-    }
-  };
+  //     if (allFiles.length > 0) {
+  //       setFiles((prevFiles) => [...prevFiles, ...allFiles]);
+  //     }
+  //   }
+  // };
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -60,7 +63,7 @@ export default function UploadFileForm() {
         const allFiles: filesModel[] = uniqueNewFiles.map((data) => ({
           name: data.name,
           size: data.size,
-          status: UPLOAD_STATUS.pedding,
+          status: UPLOAD_STATUS.pending,
           data: data,
         }));
         setFiles((prevFiles) => [...prevFiles, ...allFiles]);
@@ -92,7 +95,7 @@ export default function UploadFileForm() {
       files.forEach((file) => {
         formData.append("files", file.data);
       });
-
+      setLoading(true);
       try {
         const response = await axios.post(
           "http://localhost:4000/FormatExcel",
@@ -104,14 +107,17 @@ export default function UploadFileForm() {
           }
         );
 
+        localStorage.setItem("uploadedFiles", JSON.stringify(response));
+
         console.log("Upload Response: ", response.data);
 
         if (response.data && response.data.data) {
-          toast.current?.show({
-            severity: "success",
-            summary: "สำเร็จ",
-            detail: "แปลงไฟล์สำเร็จ",
-          });
+          setLoading(false);
+          // toast.current?.show({
+          //   severity: "success",
+          //   summary: "สำเร็จ",
+          //   detail: "แปลงไฟล์สำเร็จ",
+          // });
 
           const result = response.data.data;
           const allFiles: filesModel[] = [];
@@ -133,6 +139,7 @@ export default function UploadFileForm() {
           setFiles(allFiles);
           setUploadStatus(true);
         } else {
+          setLoading(false);
           toast.current?.show({
             severity: "error",
             summary: "ไม่สำเร็จ",
@@ -141,6 +148,7 @@ export default function UploadFileForm() {
           setUploadStatus(false);
         }
       } catch (error) {
+        setLoading(false);
         toast.current?.show({
           severity: "error",
           summary: "ไม่สำเร็จ",
@@ -262,10 +270,14 @@ export default function UploadFileForm() {
             <div className="pt-5 flex justify-center items-center">
               {files.length > 0 ? removeAllBt : null}
             </div>
+            {loading ? <ProgressSpinner /> : null}
             {files.map((data, index) => {
               return (
-                <div key={index} className="pt-5">
-                  {
+                <div
+                  key={index}
+                  className="pt-5 flex flex-row justify-center items-center"
+                >
+                  {loading ? null : (
                     <CardFiles
                       key={index}
                       index={index}
@@ -277,7 +289,7 @@ export default function UploadFileForm() {
                       }
                       removeItem={removeFileItem}
                     />
-                  }
+                  )}
                 </div>
               );
             })}

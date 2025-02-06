@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { useNavigate } from "react-router-dom";
 import { Menubar } from "primereact/menubar";
 import { MenuItem } from "primereact/menuitem";
 import Image from "next/image";
