@@ -11,6 +11,7 @@ import { base64ToBlob } from "@/utils/convertType";
 import { FONT_SIZE } from "@/config/fontSize";
 // import { FileUpload } from "@/components/FileUpload";
 import { ProgressSpinner } from "primereact/progressspinner";
+import CONFIG from "@/config/api";
 
 export default function UploadFileForm() {
   const uploadBtnText = "แปลงไฟล์";
@@ -98,7 +99,7 @@ export default function UploadFileForm() {
       setLoading(true);
       try {
         const response = await axios.post(
-          "http://localhost:4000/FormatExcel",
+          `${CONFIG.API_BASE_URL}/FormatExcel`,
           formData,
           {
             headers: {
