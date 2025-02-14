@@ -24,6 +24,7 @@ const word =
   "E-Office : ระบบบริหารจัดการสำนักงาน สนับสนุนกระบวนการทำงานภายในของภาครัฐ เพื่อขับเคลื่อนรัฐบาลดิจิทัล";
 
 export default function Page() {
+
   // const Skeleton = () => (
   //   <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>
   // );
@@ -155,6 +156,7 @@ function StepCard({
   note,
   customWidth = "w-full",
 }: StepCardProps) {
+
   return (
     <div
       className={`flex flex-col items-center text-center ${customWidth} bg-white p-6 rounded-2xl shadow-lg`}

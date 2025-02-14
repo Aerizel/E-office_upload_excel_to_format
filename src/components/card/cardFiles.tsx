@@ -97,7 +97,7 @@ export const CardFiles: React.FC<cardFilesProps> = ({
   );
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full rounded-xl flex flex-col shadow-[0px_3px_7px_1.5px_rgba(0,0,0,0.2)] bg-white">
       <div className="flex flex-row justify-between items-center">
         <div className="pt-2 pb-2 pr-[5px] flex flex-row justify-start items-center">
           <div className="p-3 flex flex-col">

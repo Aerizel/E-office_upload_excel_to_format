@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
+
+// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "primereact/resources/themes/lara-light-blue/theme.css";
 import "primereact/resources/primereact.min.css";
@@ -7,13 +9,16 @@ import "primeicons/primeicons.css";
 import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 
+
 // const font = localFont({ src: '../../public/fonts/supermarket.woff' });
 const supermarket = localFont({
   src: [
     {
+
       path: "../../public/fonts/supermarket.woff2",
       weight: "400",
       style: "normal",
+
     },
   ],
   variable: "--supermarket",
@@ -44,6 +49,7 @@ export default function RootLayout({
       <body
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         className={`${supermarket.variable}`}
+
       >
         <Navbar />
         {children}
