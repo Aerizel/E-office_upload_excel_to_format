@@ -35,7 +35,7 @@ export default function UploadFileForm() {
                 const allFiles: filesModel[] = uniqueNewFiles.map((data) => ({
                     name: data.name,
                     size: data.size,
-                    status: UPLOAD_STATUS.pedding,
+                    status: UPLOAD_STATUS.pending,
                     data: data
                 }));
                 setFiles(prevFiles => [...prevFiles, ...allFiles]);
