@@ -23,6 +23,7 @@ export default {
   ],
   theme: {
     extend: {
+
       animation: {
         aurora: "aurora 60s linear infinite",
       },
@@ -40,6 +41,7 @@ export default {
         supermarket: ["--supermarket"],
         sans: ["var(--font-inter)"],
         mono: ["var(--font-roboto-mono)"],
+
       },
       colors: {
         background: "var(--background)",
