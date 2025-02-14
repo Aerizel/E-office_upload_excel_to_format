@@ -1,5 +1,5 @@
 export const UPLOAD_STATUS = {
-    pedding: 'รอการอัปโหลด',
+    pending: 'รอการอัปโหลด',
     success: 'แปลงไฟล์สำเร็จ',
     fail: 'แปลงไฟล์ไม่สำเร็จ'
 };
