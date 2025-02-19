@@ -7,15 +7,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 const start = (
-  <Link href={"/"}>
-    <Image
-      alt="logo"
-      src="/ntLogo.jpg"
-      width="100"
-      height="100"
-      className="mr-2"
-    />
-  </Link>
+  <div className="flex flex-row gap-2 justify-center items-center">
+    <Link href={"/"}>
+      <Image
+        alt="logo"
+        src="/ntLogo.jpg"
+        width="100"
+        height="100"
+        className="mr-2"
+      />
+    </Link>
+    <h1 className="text-2xl font-bold">ระบบเเปลงเอกสาร</h1>
+  </div>
 );
 
 export default function Navbar() {
@@ -71,7 +74,7 @@ export default function Navbar() {
 
   return (
     <div className="card">
-      <Menubar model={items} start={start} />
+      <Menubar start={start} />
     </div>
   );
 }
