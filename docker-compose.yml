@@ -2,10 +2,12 @@ services:
   nextjs-app:
     build: .
     ports:
-      - "3000:3000"
+      - "80:3000"
     volumes:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
+      - .:/app
     command: "npm run dev"
     environment:
-      - WATCHPACK_POLLING=true
+      - NODE_ENV=development
+  

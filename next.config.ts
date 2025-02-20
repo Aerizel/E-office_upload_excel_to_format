@@ -5,6 +5,7 @@ const nextConfig = {
     domains: ["122.155.209.212"], // Allow images from your server
     unoptimized: true, // Disable Next.js image optimization (useful for external hosting)
   },
+
   webpack: (config, { dev }) => {
     if (dev) {
       config.watchOptions = {
@@ -13,6 +14,7 @@ const nextConfig = {
         ignored: /node_modules/, // Avoid unnecessary file watching
       };
     }
+
     return config;
   },
 };
