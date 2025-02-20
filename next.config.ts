@@ -1,10 +1,15 @@
-import { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  webpackDevMiddleware: (config: { watchOptions: { poll: number; aggregateTimeout: number } }) => {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: "standalone",
+  images: {
+    domains: ["122.155.209.212"], // Allow images from your server
+    unoptimized: true, // Disable Next.js image optimization (useful for external hosting)
+  },
+  webpackDevMiddleware: (config: any) => {
     config.watchOptions = {
-      poll: 800,
+      poll: 1000, // Adjust if needed
       aggregateTimeout: 300,
+      ignored: /node_modules/, // Avoid unnecessary file watching
     };
     return config;
   },

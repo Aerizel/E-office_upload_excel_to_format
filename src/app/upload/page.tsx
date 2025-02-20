@@ -3,15 +3,14 @@ import { useRef } from "react";
 import { useState } from "react";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
-import { CardFiles } from "@/components/card/cardFiles";
-import { FILE_STATUS, UPLOAD_STATUS } from "@/config/uploadStatus";
+import { CardFiles } from "../../components/card/cardFiles";
+import { FILE_STATUS, UPLOAD_STATUS } from "../../config/uploadStatus";
 import axios from "axios";
-import { filesModel, jsonFiles } from "@/app/model/filesModel";
-import { base64ToBlob } from "@/utils/convertType";
-import { FONT_SIZE } from "@/config/fontSize";
-import { FileUpload } from "@/components/FileUpload";
+import { filesModel, jsonFiles } from "../../app/model/filesModel";
+import { base64ToBlob } from "../../utils/convertType";
+import { FONT_SIZE } from "../../config/fontSize";
 import { ProgressSpinner } from "primereact/progressspinner";
-import CONFIG from "@/config/api";
+import CONFIG from "../../config/api";
 
 export default function UploadFileForm() {
   const uploadBtnText = "แปลงไฟล์";

@@ -1,17 +1,19 @@
-FROM node:22-alpine
+# syntax=docker/dockerfile:1
+FROM node:lts-alpine
+WORKDIR /app
 
-WORKDIR /usr/src/app
+# Copy package files and install dependencies
+COPY package.json package-lock.json ./
+RUN npm ci 
 
-COPY package*.json .
-
-RUN npm install
-
+# Copy the rest of the application
 COPY . .
 
+# Build the Next.js app
 RUN npm run build
 
-CMD ["npm", "run", "dev"]
+# Expose port 3000 (default for Next.js)
+EXPOSE 3000
 
-# EXPOSE 3000
-
-# CMD ["npm", "start"]
+# Start Next.js in production mode
+CMD ["npm", "run", "start"]
