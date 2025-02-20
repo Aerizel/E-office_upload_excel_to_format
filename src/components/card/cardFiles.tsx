@@ -9,6 +9,7 @@ interface cardFilesProps {
   name: string;
   size: number;
   status: string;
+  error: string;
   data: Blob | null;
   removeItem: (index: number) => void;
 }
@@ -18,25 +19,19 @@ export const CardFiles: React.FC<cardFilesProps> = ({
   name,
   size,
   status,
+  error,
   data,
   removeItem,
 }) => {
   const paddingBtnText = "รอการแปลงไฟล์";
   const failBtnText = "แปลงไฟล์ไม่สำเร็จ";
   const downloadBtnText = "ดาวน์โหลดไฟล์";
-
-  const files = JSON.parse(localStorage.getItem("uploadedFiles") || "[]");
-
-  // Extract fail messages from nested structure
-  const failMessages = files?.data?.data
-    ?.map((item: { fail: string }) => item.fail)
-    .filter((fail: string) => fail && fail.trim() !== ""); // Remove empty/null values
-
+  
   function onClick() {
-    if (failMessages.length > 0) {
+    if (error) {
       Swal.fire({
         title: "Failed Uploads",
-        text: failMessages.join("\n"),
+        text: error,
         icon: "error",
       });
     } else {
@@ -46,10 +41,6 @@ export const CardFiles: React.FC<cardFilesProps> = ({
       });
     }
   }
-
-  // function onClick() {
-  //   Swal.fire({ title: files.data.data[0].fail });
-  // }
 
   const handleDownload = (blob: Blob, fileName: string) => {
     const link = document.createElement("a");

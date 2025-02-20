@@ -48,6 +48,7 @@ export default function UploadFileForm() {
           name: data.name,
           size: data.size,
           status: UPLOAD_STATUS.pending,
+          error: "",
           data: data,
         }));
 
@@ -89,11 +90,6 @@ export default function UploadFileForm() {
             },
           }
         );
-
-        localStorage.setItem("uploadedFiles", JSON.stringify(response));
-
-        console.log("Upload Response: ", response.data);
-
         if (response.data && response.data.data) {
           setLoading(false);
           const result = response.data.data;
@@ -101,6 +97,7 @@ export default function UploadFileForm() {
           for (const data of result) {
             const name: string = data[jsonFiles.name].toString();
             const status: string = data[jsonFiles.status].toString();
+            const error: string = data[jsonFiles.error].toString();
             const file: Blob = base64ToBlob(data[jsonFiles.file]);
             allFiles.push({
               name: name,
@@ -109,10 +106,10 @@ export default function UploadFileForm() {
                 status === FILE_STATUS.success
                   ? UPLOAD_STATUS.success
                   : UPLOAD_STATUS.fail,
+              error: error,
               data: file,
             });
           }
-
           setFiles(allFiles);
           setUploadStatus(true);
         } else {
@@ -268,6 +265,7 @@ export default function UploadFileForm() {
                       name={data.name}
                       size={data.size}
                       status={data.status}
+                      error={data.error}
                       data={
                         data.status === UPLOAD_STATUS.success ? data.data : null
                       }
