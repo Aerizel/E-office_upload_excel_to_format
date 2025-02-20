@@ -1,5 +1,5 @@
-import { FONT_SIZE } from "@/config/fontSize";
-import { UPLOAD_STATUS } from "@/config/uploadStatus";
+import { FONT_SIZE } from "../../config/fontSize";
+import { UPLOAD_STATUS } from "../../config/uploadStatus";
 import { Button } from "primereact/button";
 import { Tag } from "primereact/tag";
 import Swal from "sweetalert2";
