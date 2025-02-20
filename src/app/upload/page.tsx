@@ -54,7 +54,7 @@ export default function UploadFileForm() {
         setFiles((prevFiles) => [...prevFiles, ...allFiles]);
       }
     }
-  }
+  };
 
   const removeFileItem = (index: number) => {
     const newData = [...files];
@@ -248,13 +248,14 @@ export default function UploadFileForm() {
             <div className="w-full pt-5 flex flex-row justify-center">
               {files.length > 0 && !loading ? removeAllBt : null}
             </div>
-            <div className="pt-5">
-              {loading ? <ProgressSpinner /> : null}
-            </div>
-            <div className="w-full max-w-4xl mx-auto min-h-70 border border-dashed bg-white dark:bg-black border-neutral-400 dark:border-neutral-800 rounded-lg">
-              {!uploadStatus && !loading ? <FileUpload onChange={addFiles} fileSelect={files} /> : null}
-            </div>
-            {(files.length > 0 && !uploadStatus && !loading) &&
+            <div className="pt-5">{loading ? <ProgressSpinner /> : null}</div>
+            {!uploadStatus && !loading ? (
+              <div className="w-full max-w-4xl mx-auto min-h-70 border border-dashed bg-white dark:bg-black border-neutral-400 dark:border-neutral-800 rounded-lg">
+                <FileUpload onChange={addFiles} fileSelect={files} />
+              </div>
+            ) : null}
+            {files.length > 0 &&
+              !loading &&
               files.map((data, index) => {
                 return (
                   <div
