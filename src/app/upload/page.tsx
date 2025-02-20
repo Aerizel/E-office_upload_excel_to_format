@@ -11,6 +11,7 @@ import { base64ToBlob } from "../../utils/convertType";
 import { FONT_SIZE } from "../../config/fontSize";
 import { ProgressSpinner } from "primereact/progressspinner";
 import CONFIG from "../../config/api";
+import { FileUpload } from "../../components/FileUpload";
 
 export default function UploadFileForm() {
   const uploadBtnText = "แปลงไฟล์";
