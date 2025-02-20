@@ -9,7 +9,7 @@ import axios from "axios";
 import { filesModel, jsonFiles } from "@/app/model/filesModel";
 import { base64ToBlob } from "@/utils/convertType";
 import { FONT_SIZE } from "@/config/fontSize";
-// import { FileUpload } from "@/components/FileUpload";
+import { FileUpload } from "@/components/FileUpload";
 import { ProgressSpinner } from "primereact/progressspinner";
 import CONFIG from "@/config/api";
 
@@ -27,36 +27,19 @@ export default function UploadFileForm() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
 
-  // Drag and Drop component
-  // const handleFileUpload = (newFiles: File[]) => {
-  //   if (newFiles.length > 0) {
-  //     const existingFileNames = new Set(files.map((file) => file.name));
-  //     const allFiles: filesModel[] = [];
-
-  //     for (const data of newFiles) {
-  //       if (!existingFileNames.has(data.name)) {
-  //         allFiles.push({
-  //           name: data.name,
-  //           size: data.size,
-  //           status: UPLOAD_STATUS.pedding,
-  //           data: data,
-  //         });
-  //       }
-  //     }
-
-  //     if (allFiles.length > 0) {
-  //       setFiles((prevFiles) => [...prevFiles, ...allFiles]);
-  //     }
-  //   }
-  // };
-
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedFiles: File[] = Array.from(e.target.files);
+      addFiles(selectedFiles);
+      e.target.value = "";
+    }
+  };
 
+  const addFiles = (raw_files: File[]) => {
+    if (raw_files.length > 0) {
       //PREVENT DUPLICATE FILES
       const existingFileNames = new Set(files.map((file) => file.name));
-      const uniqueNewFiles = selectedFiles.filter(
+      const uniqueNewFiles = raw_files.filter(
         (file) => !existingFileNames.has(file.name)
       );
 
@@ -67,12 +50,11 @@ export default function UploadFileForm() {
           status: UPLOAD_STATUS.pending,
           data: data,
         }));
+
         setFiles((prevFiles) => [...prevFiles, ...allFiles]);
       }
-
-      e.target.value = "";
     }
-  };
+  }
 
   const removeFileItem = (index: number) => {
     const newData = [...files];
@@ -114,12 +96,6 @@ export default function UploadFileForm() {
 
         if (response.data && response.data.data) {
           setLoading(false);
-          // toast.current?.show({
-          //   severity: "success",
-          //   summary: "สำเร็จ",
-          //   detail: "แปลงไฟล์สำเร็จ",
-          // });
-
           const result = response.data.data;
           const allFiles: filesModel[] = [];
           for (const data of result) {
@@ -202,6 +178,7 @@ export default function UploadFileForm() {
       raised
       onClick={() => handleUpload()}
       onTouchStart={() => handleUpload()}
+      disabled={files.length == 0 ? true : false}
     >
       <i
         className="pi pi-file-edit text-white"
@@ -239,7 +216,7 @@ export default function UploadFileForm() {
   );
   const removeAllBt = (
     <Button
-      className={`w-3/6 p-2 gap-2 flex justify-center border-none bg-red-500 focus:shadow-lg`}
+      className={`w-3/6 p-2 gap-2 flex flex-row justify-center border-none bg-red-500 focus:shadow-lg`}
       raised
       onClick={() => removeAllFileItem()}
       onTouchStart={() => removeAllFileItem()}
@@ -253,9 +230,9 @@ export default function UploadFileForm() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center  p-8 pb-20 gap-16  font-[family-name:var(--supermarket)]">
       <div className="flex flex-col gap-8 row-start-2 items-center w-[50%] h-auto sm:items-start shadow-[1px_3px_7px_1.5px_rgba(0,0,0,0.2)] rounded-md">
-        <div className="w-full p-5 ">
+        <div className="w-full p-5">
           {displayToast}
-          <div className="w-full pb-3 border-b-[3px] gap-2 flex flex-row">
+          <div className="w-full pb-3 border-b-[2px] gap-2 flex flex-row">
             {uploadStatus ? reSelectBt : selectBt}
             <input
               type="file"
@@ -267,18 +244,23 @@ export default function UploadFileForm() {
             />
             {uploadStatus ? downloadBt : uploadBt}
           </div>
-          <div className="flex flex-col">
-            <div className="pt-5 flex justify-center items-center">
-              {files.length > 0 ? removeAllBt : null}
+          <div className="pb-4 flex flex-col justify-center items-center">
+            <div className="w-full pt-5 flex flex-row justify-center">
+              {files.length > 0 && !loading ? removeAllBt : null}
             </div>
-            {loading ? <ProgressSpinner /> : null}
-            {files.map((data, index) => {
-              return (
-                <div
-                  key={index}
-                  className="pt-5 flex flex-row justify-center items-center"
-                >
-                  {loading ? null : (
+            <div className="pt-5">
+              {loading ? <ProgressSpinner /> : null}
+            </div>
+            <div className="w-full max-w-4xl mx-auto min-h-70 border border-dashed bg-white dark:bg-black border-neutral-400 dark:border-neutral-800 rounded-lg">
+              {!uploadStatus && !loading ? <FileUpload onChange={addFiles} fileSelect={files} /> : null}
+            </div>
+            {(files.length > 0 && !uploadStatus && !loading) &&
+              files.map((data, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="w-full pt-5 flex flex-row justify-center items-center"
+                  >
                     <CardFiles
                       key={index}
                       index={index}
@@ -290,18 +272,14 @@ export default function UploadFileForm() {
                       }
                       removeItem={removeFileItem}
                     />
-                  )}
-                </div>
-              );
-            })}
+                  </div>
+                );
+              })}
           </div>
         </div>
-        {/* <div className="w-full max-w-4xl mx-auto min-h-96 border border-dashed bg-white dark:bg-black border-neutral-200 dark:border-neutral-800 rounded-lg">
-          <FileUpload onChange={handleFileUpload} />
-        </div> */}
       </div>
-      {/* <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-      </footer> */}
     </div>
+    // {/* <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+    // </footer> */}
   );
 }
