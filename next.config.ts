@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   images: {
     domains: ["122.155.209.212"], // Allow images from your server
     unoptimized: true, // Disable Next.js image optimization (useful for external hosting)
