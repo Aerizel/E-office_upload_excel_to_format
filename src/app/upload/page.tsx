@@ -12,6 +12,7 @@ import { FONT_SIZE } from "../../config/fontSize";
 import { ProgressSpinner } from "primereact/progressspinner";
 import CONFIG from "../../config/api";
 import { FileUpload } from "../../components/FileUpload";
+import { COLORS } from "../../lib/colors";
 
 export default function UploadFileForm() {
   const uploadBtnText = "แปลงไฟล์";
@@ -155,60 +156,62 @@ export default function UploadFileForm() {
 
   const selectBt = (
     <Button
-      className={`px-8 py-2 gap-3 flex justify-center items-center border-none bg-blue-600 focus:shadow-lg`}
+      className={`px-8 py-2 gap-3 flex justify-center items-center border-none focus:shadow-lg`}
+      style={{ background: COLORS.gray }}
       raised
       onClick={() => fileInputRef.current?.click()}
       onTouchStart={() => fileInputRef.current?.click()}
     >
-      <i
-        className="pi pi-file-import text-white"
-        style={{ fontSize: "20px" }}
+      <i className={`pi pi-file-import text-white`}
+        style={{ fontSize: "20px"}}
       ></i>
-      <p className={`text-[${FONT_SIZE.big}] text-white pt-1`}>
+      <p className={`text-[${FONT_SIZE.big}] pt-1 text-white`}>
         {selectBtnText}
       </p>
     </Button>
   );
   const uploadBt = (
     <Button
-      className={`px-8 py-2 gap-3 flex justify-center border-none bg-blue-400 focus:shadow-lg`}
+      className={`px-8 py-2 gap-3 flex justify-center border-none focus:shadow-lg`}
+      style={{ background: COLORS.yellow }}
       raised
       onClick={() => handleUpload()}
       onTouchStart={() => handleUpload()}
       disabled={files.length == 0 ? true : false}
     >
       <i
-        className="pi pi-file-edit text-white"
-        style={{ fontSize: "20px" }}
+        className={`pi pi-file-edit`}
+        style={{ fontSize: "20px", color: COLORS.gray }}
       ></i>
-      <p className={`text-[${FONT_SIZE.big}] text-white pt-1`}>
+      <p className={`text-[${FONT_SIZE.big}] pt-1`}
+        style={{ color: COLORS.gray }}
+      >
         {uploadBtnText}
       </p>
     </Button>
   );
   const reSelectBt = (
     <Button
-      className={`px-8 py-2 gap-3 flex justify-center border-none bg-blue-400 focus:shadow-lg`}
+      className={`px-8 py-2 gap-3 flex justify-center border-none focus:shadow-lg`}
+      style={{ background: COLORS.gray }}
       raised
       onClick={() => removeAllFileItem()}
       onTouchStart={() => removeAllFileItem()}
     >
-      <i
-        className="pi pi-file-edit text-white"
-        style={{ fontSize: "20px" }}
-      ></i>
-      <p className={`text-base text-white pt-1`}>{reSelectBtnText}</p>
+      <i className="pi pi-file-edit text-white"></i>
+      <p className={`text-base pt-1 text-white`}>{reSelectBtnText}</p>
     </Button>
   );
   const downloadBt = (
     <Button
-      className={`px-8 py-2 gap-3 flex justify-center border-none bg-blue-800 focus:shadow-lg`}
+      className={`px-8 py-2 gap-3 flex justify-center border-none focus:shadow-lg`}
+      style={{ background: COLORS.yellow }}
       raised
       onClick={() => downloadAllFile()}
       onTouchStart={() => downloadAllFile}
     >
-      <i className="pi pi-upload text-white" style={{ fontSize: "20px" }}></i>
-      <p className={`text-base text-white pt-1`}>{downloadBtnText}</p>
+      <i className="pi pi-upload" style={{ fontSize: "20px", color: COLORS.gray }}></i>
+      <p className={`text-base pt-1`} style={{ color: COLORS.gray }}>{downloadBtnText}</p>
     </Button>
   );
   const removeAllBt = (
