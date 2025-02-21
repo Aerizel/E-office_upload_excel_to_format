@@ -10,10 +10,10 @@ const word =
 export default function Page() {
   return (
     <div className="w-screen h-screen flex flex-col gap-4 ">
-      <div className="flex flex-row justify-center items-center p-5">
+      <div className="flex flex-row justify-center items-center p-5 bg-yellow-100">
         <TextGenerateEffect words={word} />
       </div>
-      <div className="flex flex-col gap-5 w-screen h-screen">
+      <div className="flex flex-col gap-5 w-screen h-screen ">
         <UploadFileForm />
         <h1 className="text-2xl md:text-5xl lg:text-7xl font-bold text-center text-white relative z-2 font-sans">
           <ColourfulText text="How to use it?" />

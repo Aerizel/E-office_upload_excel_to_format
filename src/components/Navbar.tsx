@@ -22,8 +22,8 @@ const start = (
 
 export default function Navbar() {
   return (
-    <div className="card">
-      <Menubar start={start} />
+    <div className="card ">
+      <Menubar className="bg-yellow-200" start={start}/>
     </div>
   );
 }
