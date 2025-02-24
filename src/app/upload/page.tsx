@@ -170,12 +170,8 @@ export default function UploadFileForm() {
       onClick={() => fileInputRef.current?.click()}
       onTouchStart={() => fileInputRef.current?.click()}
     >
-<<<<<<< Updated upstream
-      <i className={`pi pi-file-import text-white`}
-=======
       <i
         className={`pi pi-file-import text-white`}
->>>>>>> Stashed changes
         style={{ fontSize: "20px" }}
       ></i>
       <p className={`text-[${FONT_SIZE.big}] pt-1 text-white`}>

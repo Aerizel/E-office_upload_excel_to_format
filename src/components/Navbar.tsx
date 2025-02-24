@@ -49,17 +49,12 @@ export default function Navbar() {
   const { language } = languageContext;
 
   return (
-<<<<<<< Updated upstream
-    <div className="card ">
-      <Menubar className="bg-yellow-200" start={start}/>
-=======
     <div className="card">
       {language === "en" ? (
-        <Menubar start={startEn} end={end} />
+        <Menubar start={startEn} end={end} className="bg-yellow-200" />
       ) : (
-        <Menubar start={startTh} end={end} />
+        <Menubar start={startTh} end={end} className="bg-yellow-200" />
       )}
->>>>>>> Stashed changes
     </div>
   );
 }
