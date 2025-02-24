@@ -163,7 +163,7 @@ export default function UploadFileForm() {
       onTouchStart={() => fileInputRef.current?.click()}
     >
       <i className={`pi pi-file-import text-white`}
-        style={{ fontSize: "20px"}}
+        style={{ fontSize: "20px" }}
       ></i>
       <p className={`text-[${FONT_SIZE.big}] pt-1 text-white`}>
         {selectBtnText}
@@ -249,11 +249,6 @@ export default function UploadFileForm() {
               {files.length > 0 && !loading ? removeAllBt : null}
             </div>
             <div className="pt-5">{loading ? <ProgressSpinner /> : null}</div>
-            {!uploadStatus && !loading ? (
-              <div className="w-full max-w-4xl mx-auto min-h-70 border border-dashed bg-white dark:bg-black border-neutral-400 dark:border-neutral-800 rounded-lg">
-                <FileUpload onChange={addFiles} fileSelect={files} />
-              </div>
-            ) : null}
             {files.length > 0 &&
               !loading &&
               files.map((data, index) => {
@@ -277,6 +272,13 @@ export default function UploadFileForm() {
                   </div>
                 );
               })}
+            <div className="pt-10 w-full">
+              {!uploadStatus && !loading ? (
+                <div className="w-full max-w-4xl mx-auto min-h-70 border border-dashed bg-white dark:bg-black border-neutral-400 dark:border-neutral-800 rounded-lg">
+                  <FileUpload onChange={addFiles} fileSelect={files} />
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

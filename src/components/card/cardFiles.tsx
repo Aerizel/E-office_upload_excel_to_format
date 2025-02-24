@@ -55,16 +55,18 @@ export const CardFiles: React.FC<cardFilesProps> = ({
     <Tag
       value={paddingBtnText}
       severity="warning"
-      className={`px-8 py-3 font-[family-name:var(--supermarket)] ${FONT_SIZE.normal}`}
+      className={`h-10 px-8 py-3 truncate ${FONT_SIZE.normal}`}
     />
   );
   const failed = (
-    <Tag
-      value={failBtnText}
-      severity="danger"
-      className={`px-8 py-3 font-[family-name:var(--supermarket)] text-[16px] ${FONT_SIZE.normal}`}
-      onClick={onClick}
-    />
+    <Button
+      className={`h-10 px-8 py-3 gap-2 flex justify-center border-none bg-red-600 focus:shadow-lg ${FONT_SIZE.small}`}
+      raised
+      onClick={() => onClick()}
+      onTouchStart={() => onClick()}
+    >
+      <p className={` text-white truncate ${FONT_SIZE.normal}`}>{failBtnText}</p>
+    </Button>
   );
   const cancelBtn = (
     <Button
@@ -78,12 +80,12 @@ export const CardFiles: React.FC<cardFilesProps> = ({
   );
   const downloadBtn = (
     <Button
-      className={`px-8 py-3 gap-2 flex justify-center border-none bg-green-500 focus:shadow-lg font-[family-name:var(--supermarket)] ${FONT_SIZE.small}`}
+      className={`h-10 px-8 py-3 gap-2 flex justify-center border-none bg-green-500 focus:shadow-lg ${FONT_SIZE.small}`}
       raised
       onClick={() => handleDownload(data!, name)}
       onTouchStart={() => handleDownload}
     >
-      <p className={`text-lg text-white`}>{downloadBtnText}</p>
+      <p className={` text-white truncate ${FONT_SIZE.normal}`}>{downloadBtnText}</p>
     </Button>
   );
 
@@ -103,7 +105,7 @@ export const CardFiles: React.FC<cardFilesProps> = ({
             >{`ขนาดไฟล์ : ${(size / 1024).toFixed(2)} KB`}</p>
           </div>
         </div>
-        <div className="flex flex-row items-center">
+        <div className="h-10 flex flex-row items-center">
           {status === UPLOAD_STATUS.pending
             ? pending
             : status === UPLOAD_STATUS.success && data
