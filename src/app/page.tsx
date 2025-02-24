@@ -11,13 +11,6 @@ export default function Page() {
   const { language } = languageContext;
 
   return (
-<<<<<<< Updated upstream
-    <div className="w-screen h-screen flex flex-col gap-4 ">
-      <div className="flex flex-row justify-center items-center p-5 bg-yellow-100">
-        <TextGenerateEffect words={word} />
-      </div>
-      <div className="flex flex-col gap-5 w-screen h-screen ">
-=======
     <div className="w-screen h-screen flex flex-col gap-4">
       <div className="flex flex-row justify-center items-center p-5">
         <h1 className=" dark:text-white text-black text-4xl lg:text-6xl leading-loose tracking-wide">
@@ -28,7 +21,6 @@ export default function Page() {
       </div>
 
       <div className="flex flex-col gap-5 w-screen h-screen">
->>>>>>> Stashed changes
         <UploadFileForm />
         {/* <h1 className="text-2xl md:text-5xl lg:text-7xl font-bold text-center text-white relative z-2 font-sans">
           <ColourfulText
