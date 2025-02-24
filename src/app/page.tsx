@@ -1,66 +1,97 @@
 "use client";
+import { useContext } from "react";
 import Image from "next/image";
-import { TextGenerateEffect } from "../components/TextGenerateEffect";
-import { ColourfulText } from "../components/ColorfulText";
 import UploadFileForm from "./upload/page";
-
-const word =
-  "E-Office : ระบบบริหารจัดการสำนักงาน สนับสนุนกระบวนการทำงานภายในของภาครัฐ เพื่อขับเคลื่อนรัฐบาลดิจิทัล";
+import { LanguageContext } from "../app/LanguageContext";
 
 export default function Page() {
+  const languageContext = useContext(LanguageContext);
+  if (!languageContext) return null;
+
+  const { language } = languageContext;
+
   return (
+<<<<<<< Updated upstream
     <div className="w-screen h-screen flex flex-col gap-4 ">
       <div className="flex flex-row justify-center items-center p-5 bg-yellow-100">
         <TextGenerateEffect words={word} />
       </div>
       <div className="flex flex-col gap-5 w-screen h-screen ">
+=======
+    <div className="w-screen h-screen flex flex-col gap-4">
+      <div className="flex flex-row justify-center items-center p-5">
+        <h1 className=" dark:text-white text-black text-4xl lg:text-6xl leading-loose tracking-wide">
+          {language === "en"
+            ? "E-Office: An office management system that supports internal workflow processes within the government to drive digital governance."
+            : "E-Office : ระบบบริหารจัดการสำนักงาน สนับสนุนกระบวนการทำงานภายในของภาครัฐ เพื่อขับเคลื่อนรัฐบาลดิจิทัล"}
+        </h1>
+      </div>
+
+      <div className="flex flex-col gap-5 w-screen h-screen">
+>>>>>>> Stashed changes
         <UploadFileForm />
-        <h1 className="text-2xl md:text-5xl lg:text-7xl font-bold text-center text-white relative z-2 font-sans">
-          <ColourfulText text="How to use it?" />
+        {/* <h1 className="text-2xl md:text-5xl lg:text-7xl font-bold text-center text-white relative z-2 font-sans">
+          <ColourfulText
+            text={language === "en" ? "How to use it?" : "วิธีการใช้งาน"}
+          />
+        </h1> */}
+        <h1 className="text-2xl md:text-5xl lg:text-7xl font-bold text-center text-black relative z-2 font-sans">
+          {language === "en" ? "How to use it?" : "วิธีการใช้งาน"}
         </h1>
         <div className="w-screen bg-amber-100 py-10 px-4 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {/* Step 1 */}
             <StepCard
               imageSrc="/uploadFile.jpg"
-              stepNumber="Step 1"
-              description="Users can upload a file by clicking the upload button."
+              stepNumber={language === "en" ? "Step 1" : "ขั้นตอนที่ 1"}
+              description={
+                language === "en"
+                  ? "Users can upload files by clicking the 'Choose File' button and selecting a file."
+                  : `ผู้ใช้สามารถอัพโหลดไฟล์โดยการกดที่ปุ่ม 'เลือกไฟล์' และเลือกไฟล์ที่ต้องการ`
+              }
               note="File Type: .xls, .xlsx"
             />
 
-            {/* Step 2 */}
             <StepCard
               imageSrc="/convertFiles.jpg"
-              stepNumber="Step 2"
-              description="Users can click convert file to generate a new Excel file format."
-              note=""
+              stepNumber={language === "en" ? "Step 2" : "ขั้นตอนที่ 2"}
+              description={
+                language === "en"
+                  ? "Users can click convert file to generate a new Excel file format."
+                  : "ผู้ใช้สามารถกดปุ่ม 'แปลงไฟล์' เพื่อสร้างไฟล์ Excel รูปแบบใหม่"
+              }
             />
 
-            {/* Step 3 */}
             <StepCard
               imageSrc="/downloadFile.jpg"
-              stepNumber="Step 3"
-              description="Users can click download file to download the successfully converted file."
-              note=""
+              stepNumber={language === "en" ? "Step 3" : "ขั้นตอนที่ 3"}
+              description={
+                language === "en"
+                  ? "Users can click download file to download the successfully converted file."
+                  : "ผู้ใช้สามารถกดปุ่ม 'ดาวน์โหลดไฟล์' เพื่อดาวน์โหลดไฟล์ที่แปลงเสร็จแล้ว"
+              }
             />
 
-            {/* Step 4 */}
             <StepCard
               imageSrc="/downloadAllFiles.jpg"
-              stepNumber="Step 4"
-              description="ผู้ใช้สามารถกดปุ่ม 'ดาวน์โหลดไฟล์ทั้งหมด' เพื่อดาวน์โหลดไฟล์ที่ผ่านการเเปลงสำเร็จ"
-              note=""
+              stepNumber={language === "en" ? "Step 4" : "ขั้นตอนที่ 4"}
+              description={
+                language === "en"
+                  ? "Users can click 'Download All Files' to download all converted files."
+                  : "ผู้ใช้สามารถกดปุ่ม 'ดาวน์โหลดไฟล์ทั้งหมด' เพื่อดาวน์โหลดไฟล์ที่ผ่านการแปลงสำเร็จ"
+              }
             />
           </div>
 
-          {/* Step 5 - Centered */}
           <div className="flex justify-center mt-10">
             <StepCard
               imageSrc="/deleteAllFiles.jpg"
-              stepNumber="Step 5"
-              description="Users can delete all uploaded files by clicking the delete button."
+              stepNumber={language === "en" ? "Step 5" : "ขั้นตอนที่ 5"}
+              description={
+                language === "en"
+                  ? "Users can delete all uploaded files by clicking the delete button."
+                  : "ผู้ใช้สามารถลบไฟล์ทั้งหมดที่อัพโหลดโดยการกดปุ่ม 'เอารายการทั้งหมดออก'"
+              }
               customWidth="w-[60%]"
-              note=""
             />
           </div>
         </div>
@@ -69,10 +100,12 @@ export default function Page() {
   );
 }
 
+import { ReactNode } from "react";
+
 interface StepCardProps {
   imageSrc: string;
   stepNumber: string;
-  description: string;
+  description: ReactNode;
   note?: string;
   customWidth?: string;
 }
@@ -99,7 +132,7 @@ function StepCard({
         <h1 className="text-3xl lg:text-4xl font-bold text-black">
           {stepNumber}
         </h1>
-        <p className="text-gray-700 text-lg">{description}</p>
+        <div className="text-gray-700 text-lg">{description}</div>
         {note && <p className="text-gray-500 text-sm">{note}</p>}
       </div>
     </div>

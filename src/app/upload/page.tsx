@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import { CardFiles } from "../../components/card/cardFiles";
@@ -13,20 +13,28 @@ import { ProgressSpinner } from "primereact/progressspinner";
 import CONFIG from "../../config/api";
 import { FileUpload } from "../../components/FileUpload";
 import { COLORS } from "../../lib/colors";
+import { LanguageContext } from "../LanguageContext";
+
 
 export default function UploadFileForm() {
-  const uploadBtnText = "แปลงไฟล์";
-  const selectBtnText = "เลือกไฟล์";
-  const reSelectBtnText = "แปลงไฟล์ใหม่";
-  const downloadBtnText = "ดาวน์โหลดไฟล์ทั้งหมด";
-  const removeAllBtnText = "เอารายการออกทั้งหมด";
-
   const toast = useRef<Toast>(null);
-
   const [files, setFiles] = useState<filesModel[]>([]);
   const [uploadStatus, setUploadStatus] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
+  // Change language
+  const languageContext = useContext(LanguageContext);
+  if (!languageContext) return null;
+
+  const { language } = languageContext;
+  const uploadBtnText = language === "en" ? "Convert Files" : "แปลงไฟล์";
+  const selectBtnText = language === "en" ? "Choose Files" : "เลือกไฟล์";
+  const reSelectBtnText =
+    language === "en" ? "Convert New Files" : "แปลงไฟล์ใหม่";
+  const downloadBtnText =
+    language === "en" ? "Download All Files" : "ดาวน์โหลดไฟล์ทั้งหมด";
+  const removeAllBtnText =
+    language === "en" ? "Remove All Files" : "เอารายการออกทั้งหมด";
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -162,7 +170,12 @@ export default function UploadFileForm() {
       onClick={() => fileInputRef.current?.click()}
       onTouchStart={() => fileInputRef.current?.click()}
     >
+<<<<<<< Updated upstream
       <i className={`pi pi-file-import text-white`}
+=======
+      <i
+        className={`pi pi-file-import text-white`}
+>>>>>>> Stashed changes
         style={{ fontSize: "20px" }}
       ></i>
       <p className={`text-[${FONT_SIZE.big}] pt-1 text-white`}>
@@ -183,7 +196,8 @@ export default function UploadFileForm() {
         className={`pi pi-file-edit`}
         style={{ fontSize: "20px", color: COLORS.gray }}
       ></i>
-      <p className={`text-[${FONT_SIZE.big}] pt-1`}
+      <p
+        className={`text-[${FONT_SIZE.big}] pt-1`}
         style={{ color: COLORS.gray }}
       >
         {uploadBtnText}
@@ -210,8 +224,13 @@ export default function UploadFileForm() {
       onClick={() => downloadAllFile()}
       onTouchStart={() => downloadAllFile}
     >
-      <i className="pi pi-upload" style={{ fontSize: "20px", color: COLORS.gray }}></i>
-      <p className={`text-base pt-1`} style={{ color: COLORS.gray }}>{downloadBtnText}</p>
+      <i
+        className="pi pi-upload"
+        style={{ fontSize: "20px", color: COLORS.gray }}
+      ></i>
+      <p className={`text-base pt-1`} style={{ color: COLORS.gray }}>
+        {downloadBtnText}
+      </p>
     </Button>
   );
   const removeAllBt = (
