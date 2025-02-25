@@ -100,7 +100,6 @@ export default function Page() {
 }
 
 import { ReactNode } from "react";
-import { color } from "framer-motion";
 
 interface StepCardProps {
   imageSrc: string;

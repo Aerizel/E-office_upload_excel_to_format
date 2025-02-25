@@ -15,7 +15,6 @@ import { FileUpload } from "../../components/FileUpload";
 import { COLORS } from "../../lib/colors";
 import { LanguageContext } from "../LanguageContext";
 
-
 export default function UploadFileForm() {
   const toast = useRef<Toast>(null);
   const [files, setFiles] = useState<filesModel[]>([]);
@@ -89,9 +88,11 @@ export default function UploadFileForm() {
         formData.append("files", file.data);
       });
       setLoading(true);
+      const apiBaseUrl = CONFIG.API_BASE_URL;
+      console.log(apiBaseUrl);
       try {
         const response = await axios.post(
-          `${CONFIG.API_BASE_URL}/FormatExcel`,
+          `http://122.155.209.212:4000/FormatExcel`,
           formData,
           {
             headers: {

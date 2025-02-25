@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   output: "standalone",
   images: {
     domains: ["122.155.209.212"], // Allow images from your server
