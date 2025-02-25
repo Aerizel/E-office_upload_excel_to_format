@@ -11,7 +11,7 @@ const startTh = (
     <Link href={"/"} className="w-auto h-auto">
       <Image
         alt="logo"
-        src="/ntLogo.jpg"
+        src="/ntLogo.png"
         width={100}
         height={100}
         className="w-[100px] h-auto mr-2"
@@ -26,7 +26,7 @@ const startEn = (
     <Link href={"/"} className="w-auto h-auto">
       <Image
         alt="logo"
-        src="/ntLogo.jpg"
+        src="/ntLogo.png"
         width={100}
         height={100}
         className="w-[100px] h-auto mr-2"

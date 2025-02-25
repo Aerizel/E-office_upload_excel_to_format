@@ -244,7 +244,7 @@ export default function UploadFileForm() {
   const displayToast = <Toast ref={toast} position="bottom-center" />;
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center  p-8 pb-20 gap-16  font-[family-name:var(--supermarket)]">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center  p-8  gap-10 font-[family-name:var(--supermarket)]">
       <div className="flex flex-col gap-8 row-start-2 items-center w-[50%] h-auto sm:items-start shadow-[1px_3px_7px_1.5px_rgba(0,0,0,0.2)] rounded-md">
         <div className="w-full p-5">
           {displayToast}
