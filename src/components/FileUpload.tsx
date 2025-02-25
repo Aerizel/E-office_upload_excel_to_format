@@ -1,9 +1,10 @@
 import { cn } from "@/lib/utils";
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import { motion } from "framer-motion";
 import { IconUpload } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
 import { filesModel } from "@/app/model/filesModel";
+import { LanguageContext } from "@/app/LanguageContext";
 
 const mainVariant = {
   initial: {
@@ -27,12 +28,11 @@ const secondaryVariant = {
 };
 
 interface fileUploadProps {
-  onChange: (files: File[]) => void,
-  fileSelect: filesModel[]
+  onChange: (files: File[]) => void;
+  fileSelect: filesModel[];
 }
 
 export const FileUpload = (props: fileUploadProps) => {
-
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (files: File[]) => {
@@ -51,6 +51,11 @@ export const FileUpload = (props: fileUploadProps) => {
       console.log(error);
     },
   });
+
+  // Change language
+  const languageContext = useContext(LanguageContext);
+  if (!languageContext) return null;
+  const { language } = languageContext;
 
   return (
     <div className="w-full" {...getRootProps()}>
@@ -73,13 +78,15 @@ export const FileUpload = (props: fileUploadProps) => {
         </div> */}
         <div className="flex flex-col items-center justify-center">
           <p className="relative z-20 font-sans font-bold text-neutral-700 dark:text-neutral-300 text-base">
-            Upload file
+            {language === "en" ? "Upload file" : "อัพโหลดไฟล์"}
           </p>
           <p className="relative z-20 font-sans font-normal text-neutral-400 dark:text-neutral-400 text-base mt-2">
-            Drag or drop your files here or click to upload
+            {language === "en"
+              ? "Drag or drop your files here or click to upload"
+              : "ลากไฟล์มาที่นี่ หรือ คลิ๊กเพื่อทำการอัพโหลดไฟล์"}
           </p>
           <div className="relative w-full mt-5 max-w-xl mx-auto">
-            {(
+            {
               <motion.div
                 layoutId="file-upload"
                 variants={mainVariant}
@@ -106,13 +113,13 @@ export const FileUpload = (props: fileUploadProps) => {
                   <IconUpload className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />
                 )}
               </motion.div>
-            )}
-            {(
+            }
+            {
               <motion.div
                 variants={secondaryVariant}
                 className="absolute opacity-0 border border-dashed border-sky-400 inset-0 z-30 bg-transparent flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-md"
               ></motion.div>
-            )}
+            }
           </div>
         </div>
       </motion.div>
