@@ -49,6 +49,16 @@ export default function Page() {
               }
               note="File Type: .xls, .xlsx"
             />
+            {/* <video width="900" height="900" autoPlay muted playsInline loop>
+              <source src="/step1VDO.mp4" type="video/mp4" />
+              <track
+                src="/path/to/captions.vtt"
+                kind="subtitles"
+                srcLang="en"
+                label="English"
+              />
+              Your browser does not support the video tag.
+            </video> */}
 
             <StepCard
               imageSrc="/convertFiles.jpg"

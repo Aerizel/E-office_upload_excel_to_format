@@ -28,8 +28,8 @@ export const CardFiles: React.FC<cardFilesProps> = ({
   // Change language
   const languageContext = useContext(LanguageContext);
   if (!languageContext) return null;
-
   const { language } = languageContext;
+  
   const paddingBtnText = language === "en" ? "Pending" : "รอการแปลงไฟล์";
   const failBtnText = language === "en" ? "Failed" : "แปลงไฟล์ไม่สำเร็จ";
   const downloadBtnText = language === "en" ? "Success" : "ดาวน์โหลดไฟล์";
@@ -62,17 +62,19 @@ export const CardFiles: React.FC<cardFilesProps> = ({
     <Tag
       value={paddingBtnText}
       severity="warning"
-      className={`h-10 px-8 py-3 truncate ${FONT_SIZE.normal}`}
+      className={`w-[200px] h-10 px-8 py-3 truncate text-[16px]`}
     />
   );
   const failed = (
     <Button
-      className={`h-10 px-8 py-3 gap-2 flex justify-center border-none bg-red-600 focus:shadow-lg ${FONT_SIZE.small}`}
+      className={`w-[200px] h-10 px-8 py-3 gap-2 flex justify-center border-none bg-red-600 focus:shadow-lg text-sm`}
       raised
       onClick={() => onClick()}
       onTouchStart={() => onClick()}
     >
-      <p className={` text-white truncate ${FONT_SIZE.normal}`}>{failBtnText}</p>
+      <p className={` text-white truncate ${FONT_SIZE.normal}`}>
+        {failBtnText}
+      </p>
     </Button>
   );
   const cancelBtn = (
@@ -87,12 +89,14 @@ export const CardFiles: React.FC<cardFilesProps> = ({
   );
   const downloadBtn = (
     <Button
-      className={`h-10 px-8 py-3 gap-2 flex justify-center border-none bg-green-500 focus:shadow-lg ${FONT_SIZE.small}`}
+      className={`w-[200px] h-10 px-10 py-3 gap-2 flex justify-center border-none bg-green-500 focus:shadow-lg text-sm`}
       raised
       onClick={() => handleDownload(data!, name)}
       onTouchStart={() => handleDownload}
     >
-      <p className={` text-white truncate ${FONT_SIZE.normal}`}>{downloadBtnText}</p>
+      <p className={` text-white truncate ${FONT_SIZE.normal}`}>
+        {downloadBtnText}
+      </p>
     </Button>
   );
 
@@ -104,7 +108,7 @@ export const CardFiles: React.FC<cardFilesProps> = ({
             <div className="flex flex-row ">
               <p className={FONT_SIZE.small}>{index + 1}.</p>
               <p
-                className={`text-[14px] text-graytone1 text-pretty break-words ${FONT_SIZE.small}`}
+                className={`text-[14px] text-graytone1 text-pretty break-words truncate overflow-hidden whitespace-nowrap max-w-[200px] ${FONT_SIZE.small}`}
               >
                 {language === "en"
                   ? `File's name: ${name}`
