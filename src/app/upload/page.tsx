@@ -10,7 +10,6 @@ import { filesModel, jsonFiles } from "../../app/model/filesModel";
 import { base64ToBlob } from "../../utils/convertType";
 import { FONT_SIZE } from "../../config/fontSize";
 import { ProgressSpinner } from "primereact/progressspinner";
-import CONFIG from "../../config/api";
 import { FileUpload } from "../../components/FileUpload";
 import { COLORS } from "../../lib/colors";
 import { LanguageContext } from "../LanguageContext";
@@ -88,11 +87,9 @@ export default function UploadFileForm() {
         formData.append("files", file.data);
       });
       setLoading(true);
-      const apiBaseUrl = CONFIG.API_BASE_URL;
-      console.log(apiBaseUrl);
       try {
         const response = await axios.post(
-          `http://122.155.209.212:4000/FormatExcel`,
+          `${process.env.NEXT_PUBLIC_BACKEND_API}/FormatExcel`,
           formData,
           {
             headers: {
@@ -299,7 +296,6 @@ export default function UploadFileForm() {
         </div>
       </div>
     </div>
-    // {/* <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-    // </footer> */}
+
   );
 }

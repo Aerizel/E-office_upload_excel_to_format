@@ -23,14 +23,8 @@ export default function Page() {
             : "E-Office : ระบบบริหารจัดการสำนักงาน สนับสนุนกระบวนการทำงานภายในของภาครัฐ เพื่อขับเคลื่อนรัฐบาลดิจิทัล"}
         </h1>
       </div>
-
       <div className="flex flex-col gap-5 w-screen h-screen">
         <UploadFileForm />
-        {/* <h1 className="text-2xl md:text-5xl lg:text-7xl font-bold text-center text-white relative z-2 font-sans">
-          <ColourfulText
-            text={language === "en" ? "How to use it?" : "วิธีการใช้งาน"}
-          />
-        </h1> */}
         <h1
           className="text-2xl md:text-5xl lg:text-7xl font-bold text-center relative z-2 font-sans"
           style={{ color: COLORS.gray }}
@@ -49,17 +43,6 @@ export default function Page() {
               }
               note="File Type: .xls, .xlsx"
             />
-            {/* <video width="900" height="900" autoPlay muted playsInline loop>
-              <source src="/step1VDO.mp4" type="video/mp4" />
-              <track
-                src="/path/to/captions.vtt"
-                kind="subtitles"
-                srcLang="en"
-                label="English"
-              />
-              Your browser does not support the video tag.
-            </video> */}
-
             <StepCard
               imageSrc="/convertFiles.jpg"
               stepNumber={language === "en" ? "Step 2" : "ขั้นตอนที่ 2"}

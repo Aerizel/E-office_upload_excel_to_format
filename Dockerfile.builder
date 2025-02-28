@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:lts-alpine AS builder
 
 # Install su-exec
 RUN apk add --no-cache su-exec
@@ -21,12 +21,3 @@ ENV NEXT_PUBLIC_BACKEND_API=${NEXT_PUBLIC_BACKEND_API}
 
 # Build the Next.js app
 RUN npm run build
-
-# Use a non-root user for security
-USER node
-
-# Expose port 3000 (Next.js default)
-EXPOSE 3000
-
-# Use entrypoint to replace env variables before starting the app
-CMD ["npm", "run", "start"]
