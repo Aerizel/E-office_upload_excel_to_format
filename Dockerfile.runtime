@@ -1,0 +1,19 @@
+FROM node:lts-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install su-exec
+RUN apk add --no-cache su-exec
+
+# Copy built files from builder stage
+COPY --from=builder /app .  
+
+# Use a non-root user for security
+USER node
+
+# Expose port 3000 (Next.js default)
+EXPOSE 3000
+
+# Use entrypoint to replace env variables before starting the app
+CMD ["npm", "run", "start"]
