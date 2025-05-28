@@ -296,6 +296,5 @@ export default function UploadFileForm() {
         </div>
       </div>
     </div>
-
   );
 }

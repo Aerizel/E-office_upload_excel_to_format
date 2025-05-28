@@ -29,13 +29,13 @@ export const CardFiles: React.FC<cardFilesProps> = ({
   const languageContext = useContext(LanguageContext);
   if (!languageContext) return null;
   const { language } = languageContext;
-  
+
   const paddingBtnText = language === "en" ? "Pending" : "รอการแปลงไฟล์";
   const failBtnText = language === "en" ? "Failed" : "แปลงไฟล์ไม่สำเร็จ";
   const downloadBtnText = language === "en" ? "Success" : "ดาวน์โหลดไฟล์";
 
   function onClick() {
-    if (error) {
+    if (status === "แปลงไฟล์ไม่สำเร็จ") {
       Swal.fire({
         title: "Failed Uploads",
         text: error,
@@ -128,8 +128,8 @@ export const CardFiles: React.FC<cardFilesProps> = ({
           {status === UPLOAD_STATUS.pending
             ? pending
             : status === UPLOAD_STATUS.success && data
-              ? downloadBtn
-              : failed}
+            ? downloadBtn
+            : failed}
           {cancelBtn}
         </div>
       </div>
